@@ -1,6 +1,5 @@
 # Money Management
 This app is for help user to make records of their income or expenses
-## Hello world
 ## API Spec
 
 ### Register User
