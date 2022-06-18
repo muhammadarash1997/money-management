@@ -107,8 +107,8 @@ This app is for help user to make records of their income or expenses
 		{
 			"wallet_id": "string",
 			"amount": "integer",
-			"category": "integer",
-			"note": "integer",
+			"category": "string",
+			"note": "string",
 			"time": "date"
 		}
 	Response:
@@ -127,9 +127,10 @@ This app is for help user to make records of their income or expenses
 	- Body:
 		{
 			"id": "string",
+			"wallet_id": "string",
 			"amount": "integer",
-			"category": "integer",
-			"note": "integer",
+			"category": "string",
+			"note": "string",
 			"time": "date"
 		}
 	Response:
