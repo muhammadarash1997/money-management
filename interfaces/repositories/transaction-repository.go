@@ -14,6 +14,7 @@ import (
 
 type TransactionRepository interface {
 	Save(domain.Transaction) error
+	GetByID(primitive.ObjectID) (domain.Transaction, error)
 	GetByWalletID(int, primitive.ObjectID) ([]domain.Transaction, error)
 	Edit(domain.Transaction) error
 	Delete(primitive.ObjectID) error
@@ -37,6 +38,21 @@ func (this *transactionRepository) Save(transaction domain.Transaction) error {
 	}
 
 	return nil
+}
+
+func (this *transactionRepository) GetByID(id primitive.ObjectID) (domain.Transaction, error) {
+	ctx := context.Background()
+
+	var transaction domain.Transaction
+	filter := bson.M{"_id": id}
+	err := this.db.Collection("transactions").FindOne(ctx, filter).Decode(&transaction)
+	if err != nil {
+		log.Printf("Error %v", err)
+		err = errors.New("Transaction not found")
+		return transaction, err
+	}
+
+	return transaction, nil
 }
 
 func (this *transactionRepository) GetByWalletID(limit int, walletID primitive.ObjectID) ([]domain.Transaction, error) {

@@ -33,7 +33,8 @@ type CreateTransactionRequest struct {
 }
 
 type EditTransactionRequest struct {
-	ID       primitive.ObjectID `json:"wallet_id"`
+	ID       primitive.ObjectID `json:"_id"`
+	WalletID primitive.ObjectID `json:"wallet_id"`
 	Amount   int                `json:"amount"`
 	Category string             `json:"category"`
 	Note     string             `json:"note"`

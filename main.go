@@ -21,7 +21,7 @@ func main() {
 	walletController := controllers.NewWalletController(walletInteractor)
 
 	transactionRepository := repositories.NewTransactionRepository(database)
-	transactionInteractor := usecases.NewTransactionInteractor(transactionRepository)
+	transactionInteractor := usecases.NewTransactionInteractor(transactionRepository, walletRepository)
 	transactionController := controllers.NewTransactionController(transactionInteractor)
 
 	// Setup Gin
@@ -29,10 +29,10 @@ func main() {
 	router.POST("/api/user/register", userController.RegisterHandler)
 	router.POST("/api/user/login", userController.LoginHandler)
 	router.POST("/api/wallet", walletController.CreateWalletHandler)
-	router.GET("/api/transactions/:limit", transactionController.GetTransactionsByWalletIDHandler)    // Get Wallet's Transactions
-	router.POST("/api/transaction", transactionController.CreateTransactionHandler)                   // Add Transaction
-	router.POST("/api/transaction/:transaction_id", transactionController.EditTransactionHandler)     // Update Transaction
-	router.DELETE("/api/transaction/:transaction_id", transactionController.DeleteTransactionHandler) // Delete Transaction
+	router.GET("/api/transactions/:limit/:wallet_id", transactionController.GetTransactionsByWalletIDHandler)    // Get Wallet's Transactions
+	router.POST("/api/transaction", transactionController.CreateTransactionHandler)                              // Add Transaction
+	router.PUT("/api/transaction", transactionController.EditTransactionHandler)                                 // Update Transaction
+	router.DELETE("/api/transaction/:transaction_id/:wallet_id", transactionController.DeleteTransactionHandler) // Delete Transaction
 
 	router.SERVE("8080")
 }

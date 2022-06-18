@@ -70,7 +70,11 @@ func (this *userController) LoginHandler(w http.ResponseWriter, r *http.Request)
 		log.Printf("Error %v", err)
 		err = errors.New("Invalid payload")
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		json.NewEncoder(w).Encode(err)
+		json.NewEncoder(w).Encode(dto.Message{
+			Code: http.StatusUnprocessableEntity,
+			Status: "Error",
+			Data: err,
+		})
 		return
 	}
 

@@ -11,3 +11,7 @@ type Wallet struct {
 	Currency string             `bson:"currency"`
 	Amount   int             `bson:"amount"`
 }
+
+func (this *Wallet) Transact(amount int) {
+	this.Amount = this.Amount + amount
+}
