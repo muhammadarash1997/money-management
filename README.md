@@ -58,16 +58,16 @@ This app is for help user to make records of their income or expenses
 			"amount": "integer",
 		}
 	Response:
-		{
-			"code": "integer",
-			"status": "string",
-			"data": {
-				"id": "string",
-				"name": "string",
-				"currency": "string",
-				"amount": "integer",
-			}
+	{
+		"code": "integer",
+		"status": "string",
+		"data": {
+			"id": "string",
+			"name": "string",
+			"currency": "string",
+			"amount": "integer",
 		}
+	}
 
 ### Get Transactions of Wallet
 	Request:
@@ -112,11 +112,11 @@ This app is for help user to make records of their income or expenses
 			"time": "date"
 		}
 	Response:
-		{
-			"code": "integer",
-			"status": "string",
-			"data": "null"
-		}
+	{
+		"code": "integer",
+		"status": "string",
+		"data": "null"
+	}
 
 ### Edit Transaction
 	Request:
@@ -143,7 +143,7 @@ This app is for help user to make records of their income or expenses
 ### Delete Transaction
 	Request:
 	- Method: PUT
-	- Endpoint: "/api/transaction/:transaction_id"
+	- Endpoint: "/api/transaction/:transaction_id/:wallet_id"
 	- Header:
 		- Content-Type: application/json
 	Response:
